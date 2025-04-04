@@ -7,13 +7,11 @@ import {
   Download,
   Receipt,
   ArrowRight,
-  ArrowLeft,
   Plus,
   FileText
 } from 'lucide-react';
 
 function App() {
-  const [dateFilter, setDateFilter] = useState('Date (UTC)');
   const data=[{
     date:"Apr 3",
     name:"Payment from Acme Corp",
@@ -126,23 +124,35 @@ function App() {
             <tbody className="bg-white divide-y divide-gray-200">
               {
                 data.map((row,index)=>{
-                  if(index==0 ||data[index-1].date!==data[index].date)
-                  return  <TransactionRow
-                  first
-                  date={row.date}
-                  name={row.name}
-                  amount={row.amount}
-                  account={row.account}
-                  paymentMethod={<>Request or Invoice <ArrowRight className="inline w-4 h-4" /></>}
-                />
-                else  return  <TransactionRow
-                
-                date={row.date}
-                name={row.name}
-                amount={row.amount}
-                account={row.account}
-                paymentMethod={<>Request or Invoice <ArrowRight className="inline w-4 h-4" /></>}
-              />
+                  if (index === 0 || data[index - 1].date !== data[index].date)
+                    return (
+                      <TransactionRow
+                        first
+                        date={row.date}
+                        name={row.name}
+                        amount={row.amount}
+                        account={row.account}
+                        paymentMethod={
+                          <>
+                            Request or Invoice <ArrowRight className="inline w-4 h-4" />
+                          </>
+                        }
+                      />
+                    );
+                  else
+                    return (
+                      <TransactionRow
+                        date={row.date}
+                        name={row.name}
+                        amount={row.amount}
+                        account={row.account}
+                        paymentMethod={
+                          <>
+                            Request or Invoice <ArrowRight className="inline w-4 h-4" />
+                          </>
+                        }
+                      />
+                    );
                 })
               }
             
